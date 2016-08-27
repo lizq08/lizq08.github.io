@@ -1,0 +1,38 @@
+970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Telecom/PlatformService), interface_name(com.ctc.igd1.PlatformService), prop_name(DistAddr)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Info/Network), interface_name(com.ctc.igd1.NetworkInfo), prop_name(LANIPAddr)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: g_dbus_connection_call_sync got errmsg < GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: No such interface 'com.ctc.igd1.Properties' on object at path /com/ctc/igd1/Telecom/PlatformService >.
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: return (-1), get value (NULL)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwGetPlatformService: enter
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetAllProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Telecom/PlatformService), interface_name(com.ctc.igd1.PlatformService)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: return (0), get value ('')
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Info/PON), interface_name(com.ctc.igd1.PONInfo), prop_name(LOID)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetAllProperty: g_dbus_connection_call_sync got errmsg < GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: No such interface 'com.ctc.igd1.Properties' on object at path /com/ctc/igd1/Telecom/PlatformService >.
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetAllProperty: return (-1), get value [NULL]
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Info/Network), interface_name(com.ctc.igd1.NetworkInfo), prop_name(LANIPAddr)
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: return (0), get value ('')
+1970-01-01 08:12:07 user.notice cloudclient: [UnknownService] CtSgwDBusGetProperty: service_name(com.ctc.igd1), object_path(/com/ctc/igd1/Info/Network), interface_name(com.ctc.igd1.NetworkInfo), prop_name(WANIPAddr)
+
+这个可能还是接口没做好，我（pbb)再看看吧
+
+
+设备厂商：上海贝曼元脉信息技术有限公司
+设备型号：HA1300_G, HA1300
+硬件版本：V1.0G.V1.0E
+软件版本：XXX.XXX.V01
+芯片类型：RTL9607
+网络接口：4GE
+设备OUI：001F8F
+
+
+"mode"为升级文件类型(0：网关固件；1：OSGI framework；2：Java machine；
+3：NOS；4：android；5：网关通信接口模块; 6：CTWRT framework; 
+7: CTWRT CloudClient)
+
+	升级framework，你们用的应该是Upgrade(IN STRING filename, OUT UINT32 result) 这个接口
+	升级云客户端是中间件自己完成，不需要接口
+
+另外如果需要升级Load，这个对应的文件类型是？  0
+
+
+Framework之间反复切换：dbus-send --system --print-reply --dest=com.ctc.saf1 /com/ctc/saf1 com.ctc.saf1.framework.Switch
+
